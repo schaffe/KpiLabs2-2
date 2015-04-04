@@ -4,6 +4,7 @@ import ua.kpi.dzidzoiev.booking.controller.db.ConnectionPool;
 import ua.kpi.dzidzoiev.booking.controller.db.MySqlConnectionPool;
 import ua.kpi.dzidzoiev.booking.model.City;
 
+import javax.enterprise.inject.Vetoed;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

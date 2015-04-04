@@ -20,18 +20,24 @@
    xsi:schemaLocation="
         http://xmlns.jcp.org/xml/ns/persistence
         http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-   <persistence-unit name="primary">
-      <!-- If you are running in a production environment, add a managed 
-         data source, this example data source is just for development and testing! -->
-      <!-- The datasource is deployed as WEB-INF/dzidzoiev.dzidzoiev-ds.xml, you
-         can find it in the source at src/main/webapp/WEB-INF/dzidzoiev.dzidzoiev-ds.xml -->
-      <jta-data-source>java:jboss/datasources/lab3-7DS</jta-data-source>
-      <properties>
-         <!-- Properties for Hibernate -->
-         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
-         <property name="hibernate.show_sql" value="false" />
-      </properties>
-   </persistence-unit>
+   <!--<persistence-unit name="primary">-->
+      <!--&lt;!&ndash; If you are running in a production environment, add a managed -->
+         <!--data source, this example data source is just for development and testing! &ndash;&gt;-->
+      <!--&lt;!&ndash; The datasource is deployed as WEB-INF/dzidzoiev.dzidzoiev-ds.xml, you-->
+         <!--can find it in the source at src/main/webapp/WEB-INF/dzidzoiev.dzidzoiev-ds.xml &ndash;&gt;-->
+      <!--<jta-data-source>java:jboss/datasources/lab3-7DS</jta-data-source>-->
+      <!--<properties>-->
+         <!--&lt;!&ndash; Properties for Hibernate &ndash;&gt;-->
+         <!--<property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
+         <!--<property name="hibernate.show_sql" value="false" />-->
+      <!--</properties>-->
+   <!--</persistence-unit>-->
+    <persistence-unit name="Booking">
+        <jta-data-source>java:jboss/datasources/cities</jta-data-source>
+        <properties>
+            <property name="hibernate.show_sql" value="false" />
+        </properties>
+    </persistence-unit>
     <!--<persistence-unit name="Booking" transaction-type="RESOURCE_LOCAL">-->
         <!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
 
