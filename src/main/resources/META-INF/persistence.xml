@@ -32,7 +32,7 @@
          <!--<property name="hibernate.show_sql" value="false" />-->
       <!--</properties>-->
    <!--</persistence-unit>-->
-    <persistence-unit name="Booking">
+    <persistence-unit name="Booking" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/cities</jta-data-source>
         <properties>
             <property name="hibernate.show_sql" value="false" />

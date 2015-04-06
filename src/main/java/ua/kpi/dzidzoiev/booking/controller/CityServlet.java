@@ -36,7 +36,6 @@ public class CityServlet extends javax.servlet.http.HttpServlet {
         emf = Persistence.createEntityManagerFactory("Booking");
         em = emf.createEntityManager();
         dao = (CityDao) DaoFactory.getInstance().getDao(DaoFactory.PROVIDER_JPA, DaoFactory.ENTITIY_CITY);
-        ((JpaCityDaoImpl) dao).init(em);
     }
 
     @Override

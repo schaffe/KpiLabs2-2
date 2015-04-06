@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf8"
          pageEncoding="utf8" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +11,7 @@
 </head>
 <body>
 <div id="popupcontent">
-    <form action="${pageContext.request.contextPath}/city/" id="edit_city_form">
+    <form action="${pageContext.request.contextPath}/rest/city/" id="edit_city_form">
         <p>
             <input type="text" name="name" id="edit_city_form_name" required>
         </p>
@@ -23,7 +22,7 @@
     <%--<div id="statusbar"><button onclick="hidePopup();">Close window</button></div>--%>
 </div>
 <div class="main_content">
-<form action="${pageContext.request.contextPath}/city/" id="add_city_form">
+<form action="${pageContext.request.contextPath}/rest/city/" id="add_city_form">
     <p>
         <input type="text" name="name" id="add_city_form_name" placeholder = "City" required></p>
     <p>

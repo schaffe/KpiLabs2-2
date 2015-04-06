@@ -1,5 +1,5 @@
 *{
-    font-family: verdana;
+    font-family: verdana, serif;
     font-size: 14px;
 }
 
@@ -36,7 +36,7 @@
 .main_content {
     position: relative;
     top:20px;
-    left: 40%;
+    left: 35%;
     padding: 10px;
     margin: 10px;
     background: #EDF2F6;
