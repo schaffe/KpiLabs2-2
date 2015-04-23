@@ -38,11 +38,6 @@ import java.util.*;
 import java.util.logging.Logger;
 
 
-/**
- * JAX-RS Example
- * <p/>
- * This class produces a RESTful service to read/write the contents of the members table.
- */
 @Path("/city")
 @RequestScoped
 public class CityResourceRESTService {
@@ -54,14 +49,14 @@ public class CityResourceRESTService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<City> listAllMembers() {
+    public List<City> listAllCities() {
         return dao.getAll();
     }
 
     @GET
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
-    public City lookupMemberById(@PathParam("id") int id) {
+    public City lookupCityById(@PathParam("id") int id) {
         City city = dao.get(id);
         if (city == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);

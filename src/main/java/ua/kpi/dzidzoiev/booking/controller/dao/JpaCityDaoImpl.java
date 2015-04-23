@@ -32,7 +32,8 @@ public class JpaCityDaoImpl implements CityDao {
         CriteriaQuery<City> criteria = cb.createQuery(City.class);
         Root<City> city = criteria.from(City.class);
         criteria.select(city).orderBy(cb.asc(city.get(City_.name)));
-        return em.createQuery(criteria).getResultList();    }
+        return em.createQuery(criteria).getResultList();
+    }
 
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)

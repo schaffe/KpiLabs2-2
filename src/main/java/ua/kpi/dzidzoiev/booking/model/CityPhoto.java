@@ -9,13 +9,14 @@ import javax.persistence.*;
 public class CityPhoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Integer id;
 
     @Column
     private String url;
 
-    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private City city;
 
     public CityPhoto() {
