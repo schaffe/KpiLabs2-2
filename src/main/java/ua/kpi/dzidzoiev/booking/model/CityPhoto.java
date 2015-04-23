@@ -1,5 +1,7 @@
 package ua.kpi.dzidzoiev.booking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public class CityPhoto {
     @Column
     private String url;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     private City city;
 
