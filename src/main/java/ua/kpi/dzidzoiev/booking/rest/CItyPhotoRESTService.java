@@ -19,10 +19,10 @@ public class CItyPhotoRESTService {
     @Inject
     CityPhotoRepository repository;
 
-    @POST
+    @PUT
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
-    public CityPhoto createCity(@PathParam("id")int cityId, String url) {
+    public CityPhoto create(@PathParam("id")int cityId, String url) {
         return repository.saveOrUpdatePhoto(cityId, url);
     }
 
@@ -32,5 +32,9 @@ public class CItyPhotoRESTService {
         return repository.getPhotoByCityId(cityId);
     }
 
+    @DELETE
+    public void delete(@PathParam("id") int cityId) {
+        repository.delete(cityId);
+    }
 
 }

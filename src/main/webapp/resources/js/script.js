@@ -1,10 +1,6 @@
 var citiesList;
 
-var env = {
-    app: "lab3-7/",
-    rest: "lab3-7/rest/",
-    city: "lab3-7/rest/city/"
-    };
+var selectedId;
 
 var sortParams = {
     column: null,
@@ -27,11 +23,10 @@ var sortParams = {
     }
 };
 
-$.fn.serializeObject = function()
-{
+$.fn.serializeObject = function () {
     var o = {};
     var a = this.serializeArray();
-    $.each(a, function() {
+    $.each(a, function () {
         if (o[this.name] !== undefined) {
             if (!o[this.name].push) {
                 o[this.name] = [o[this.name]];
@@ -140,32 +135,10 @@ function resetForm($form) {
     $('#add_city_form_population').val('');
 }
 
-function changeBg(cityName) {
-    //var ipQuery = "http://ip.jsontest.com/";
-    //$.get(ipQuery).done(function (result) {
-    //    var query = 'http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=' + cityName + '&imgsz=huge&userip=' + result.ip;
-    //    $.get(query).done(function (result) {
-    //        var img = result[0].url;
-    //        document.body.style.background = "#f3f3f3 url('" + img + "') no-repeat right top";
-    //    }).error(function(data) {
-    //        alert("error");
-    //    });
-    //});
-    //
-    //$.getJSON("http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=PHP",
-    //    function(data){
-    //        var ul = document.createElement("ul");
-    //        $.each(data.results, function(i, val){
-    //            var li = document.createElement("li");
-    //            li.innerHTML = '<a href="'+val.url+'" title="'+val.url+'" target="_blank">'+val.title+"</a> - "+val.content;
-    //            ul.appendChild(li);
-    //        });
-    //        $('body').html(ul);
-    //    });
-    $('.bg').css('background-image', 'url(https://everythingabya.files.wordpress.com/2013/09/colosseum-taly-rome-landscape1.jpg)');
-    //$(".bg").background = "url('http://upload.wikimedia.org/wikipedia/en/4/49/Trevi_Fountain_Rome_(capital_edit).jpg')";
-
-
+function changeBg(id) {
+    var city = getCityFromList(id);
+    var url = city.photo.url;
+    $('.bg').css('background-image', 'url(' + url + ')');
 }
 
 
@@ -224,7 +197,6 @@ function hidePopup() {
 }
 
 
-
 $(document).ready(function () {
     showAll();
 
@@ -274,11 +246,30 @@ $(document).on('click', '.edit', function () {
 
 $(document).on('click', 'tr', function () {
     var $elem = $(this);
-    var id = $elem.attr('id');
-    var cityName = getCityFromList(id).name;
-    console.log(id + " " + cityName)
-    //changeBg(cityName);
+    selectedId = $elem.attr('id');
+    console.log(selectedId)
+    changeBg(selectedId);
 });
 
+$(document).on('click', '#photo_img', function () {
+    if (selectedId) {
+        var url = prompt("Enter url");
+
+        $.ajax({
+            url: '../rest/city/' + selectedId + '/photo',
+            data: url,
+            type: 'PUT',
+            contentType: 'text/plain',
+            success: function (photo) {
+                var city = getCityFromList(selectedId);
+                city.photo = photo;
+                changeBg(selectedId)
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
+});
 
 

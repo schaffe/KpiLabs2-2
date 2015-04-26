@@ -3,7 +3,6 @@ package ua.kpi.dzidzoiev.booking.data;
 import ua.kpi.dzidzoiev.booking.model.City;
 import ua.kpi.dzidzoiev.booking.model.CityPhoto;
 import ua.kpi.dzidzoiev.booking.model.CityPhoto_;
-import ua.kpi.dzidzoiev.booking.model.City_;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -27,29 +26,17 @@ public class CityPhotoRepository {
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public CityPhoto saveOrUpdatePhoto(int cityId, String url) {
         City city = em.find(City.class, cityId);
+        CityPhoto photo = city.getPhoto();
 
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<CityPhoto> criteria = cb.createQuery(CityPhoto.class);
-        Root<CityPhoto> cityPhoto = criteria.from(CityPhoto.class);
-        criteria.select(cityPhoto).where(cb.and(cb.like(cityPhoto.get(CityPhoto_.url),url),cb.equal(cityPhoto.get(CityPhoto_.city),city)));
-
-        List<CityPhoto> result = em.createQuery(criteria).getResultList();
-        CityPhoto photo = null;
-        if(result.isEmpty()) {
-            photo = new CityPhoto();
-        } else {
-            photo = result.get(0);
-        }
-
-        if(photo == null) {
+        if (photo == null) {
             photo = new CityPhoto();
         }
 
         photo.setUrl(url);
+        photo.setCity(city);
 
-        if(photo.getCity() == null) {
-            photo.setCity(city);
-        }
+        city.setPhoto(photo);
+        em.merge(city);
 
         return photo;
     }
@@ -59,4 +46,8 @@ public class CityPhotoRepository {
         return city.getPhoto();
     }
 
+    public void delete(int cityId) {
+        City city = em.find(City.class, cityId);
+        em.remove(city.getPhoto());
+    }
 }

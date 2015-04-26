@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery-latest.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/script.js"></script>
     <title>Cities</title>
@@ -21,6 +21,7 @@
     </form>
     <%--<div id="statusbar"><button onclick="hidePopup();">Close window</button></div>--%>
 </div>
+<div id="photo_img"></div>
 <div class="main_content">
 <form action="${pageContext.request.contextPath}/rest/city/" id="add_city_form">
     <p>
