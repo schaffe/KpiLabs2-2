@@ -16,39 +16,45 @@
     limitations under the License.
 -->
 <persistence version="2.1"
-   xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
         http://xmlns.jcp.org/xml/ns/persistence
         http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-   <!--<persistence-unit name="primary">-->
-      <!--&lt;!&ndash; If you are running in a production environment, add a managed -->
-         <!--data source, this example data source is just for development and testing! &ndash;&gt;-->
-      <!--&lt;!&ndash; The datasource is deployed as WEB-INF/dzidzoiev.dzidzoiev-ds.xml, you-->
-         <!--can find it in the source at src/main/webapp/WEB-INF/dzidzoiev.dzidzoiev-ds.xml &ndash;&gt;-->
-      <!--<jta-data-source>java:jboss/datasources/lab3-7DS</jta-data-source>-->
-      <!--<properties>-->
-         <!--&lt;!&ndash; Properties for Hibernate &ndash;&gt;-->
-         <!--<property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
-         <!--<property name="hibernate.show_sql" value="false" />-->
-      <!--</properties>-->
-   <!--</persistence-unit>-->
+    <!--<persistence-unit name="primary">-->
+    <!--&lt;!&ndash; If you are running in a production environment, add a managed -->
+    <!--data source, this example data source is just for development and testing! &ndash;&gt;-->
+    <!--&lt;!&ndash; The datasource is deployed as WEB-INF/dzidzoiev.dzidzoiev-ds.xml, you-->
+    <!--can find it in the source at src/main/webapp/WEB-INF/dzidzoiev.dzidzoiev-ds.xml &ndash;&gt;-->
+    <!--<jta-data-source>java:jboss/datasources/lab3-7DS</jta-data-source>-->
+    <!--<properties>-->
+    <!--&lt;!&ndash; Properties for Hibernate &ndash;&gt;-->
+    <!--<property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
+    <!--<property name="hibernate.show_sql" value="false" />-->
+    <!--</properties>-->
+    <!--</persistence-unit>-->
+    <persistence-unit name="Security">
+        <jta-data-source>java:jboss/datasources/SecurityDS</jta-data-source>
+        <properties>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
+    </persistence-unit>
     <persistence-unit name="Booking" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/cities</jta-data-source>
         <properties>
-            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>
     <!--<persistence-unit name="Booking" transaction-type="RESOURCE_LOCAL">-->
-        <!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+    <!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
 
-        <!--<properties>-->
-            <!--<property name="hibernate.show_sql" value="true" />-->
-            <!--<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />-->
-            <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/booking_service"/>-->
-            <!--<property name="javax.persistence.jdbc.user" value="booking_user" />-->
-            <!--<property name="javax.persistence.jdbc.password" value="password" />-->
-            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>-->
-            <!--&lt;!&ndash;<property name="hibernate.hbm2ddl.auto" value="update"/>&ndash;&gt;-->
-        <!--</properties>-->
+    <!--<properties>-->
+    <!--<property name="hibernate.show_sql" value="true" />-->
+    <!--<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />-->
+    <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/booking_service"/>-->
+    <!--<property name="javax.persistence.jdbc.user" value="booking_user" />-->
+    <!--<property name="javax.persistence.jdbc.password" value="password" />-->
+    <!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>-->
+    <!--&lt;!&ndash;<property name="hibernate.hbm2ddl.auto" value="update"/>&ndash;&gt;-->
+    <!--</properties>-->
     <!--</persistence-unit>-->
 </persistence>

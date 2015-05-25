@@ -24,7 +24,7 @@ import javax.inject.Inject;
 
 import dzidzoiev.labs.model.Member;
 import dzidzoiev.labs.service.MemberRegistration;
-import dzidzoiev.labs.util.Resources;
+import ua.kpi.dzidzoiev.booking.util.Resources;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;

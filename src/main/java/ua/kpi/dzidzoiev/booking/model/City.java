@@ -1,13 +1,15 @@
 package ua.kpi.dzidzoiev.booking.model;
 
+import javax.inject.Named;
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by dzidzoiev on 2/21/15.
  */
 @Entity
 @Table(name = "Cities")
-public class City {
+public class City implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

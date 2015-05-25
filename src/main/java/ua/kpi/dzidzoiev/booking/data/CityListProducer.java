@@ -1,4 +1,4 @@
-package dzidzoiev.labs.util;/*
+package ua.kpi.dzidzoiev.booking.data;/*
  * JBoss, Home of Professional Open Source
  * Copyright 2013, Red Hat, Inc. and/or its affiliates, and individual
  * contributors by the @authors tag. See the copyright.txt in the
@@ -15,42 +15,39 @@ package dzidzoiev.labs.util;/*
  * limitations under the License.
  */
 
-import java.util.logging.Logger;
+import dzidzoiev.labs.model.Member;
+import ua.kpi.dzidzoiev.booking.model.City;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.event.Observes;
+import javax.enterprise.event.Reception;
 import javax.enterprise.inject.Produces;
-import javax.enterprise.inject.spi.InjectionPoint;
-import javax.faces.context.FacesContext;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.List;
 
-/**
- * This class uses CDI to alias Java EE resources, such as the persistence context, to CDI beans
- * 
- * <p>
- * Example injection on a managed bean field:
- * </p>
- * 
- * <pre>
- * &#064;Inject
- * private EntityManager em;
- * </pre>
- */
-public class Resources {
+@RequestScoped
+public class CityListProducer {
+
+    @Inject
+    private CityRepository cityRepository;
+
+
+    private List<City> cities;
 
     @Produces
-    @PersistenceContext
-    private EntityManager em;
-
-    @Produces
-    public Logger produceLog(InjectionPoint injectionPoint) {
-        return Logger.getLogger(injectionPoint.getMember().getDeclaringClass().getName());
+    @Named(value = "cities")
+    public List<City> getCities() {
+        return cities;
     }
 
-    @Produces
-    @RequestScoped
-    public FacesContext produceFacesContext() {
-        return FacesContext.getCurrentInstance();
-    }
+//    public void onMemberListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final City city) {
+//        retrieveAllCities();
+//    }
 
+    @PostConstruct
+    public void retrieveAllCities() {
+        cities = cityRepository.getAll();
+    }
 }
